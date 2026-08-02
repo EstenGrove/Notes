@@ -1,0 +1,16 @@
+@import "../../sass/variables";
+
+.ResizeHandle {
+	flex: 0 0 5px;
+	height: 100%;
+	cursor: col-resize;
+	touch-action: none;
+	background-color: transparent;
+	border-left: $border;
+
+	&:hover,
+	&.isResizing {
+		background-color: $accent;
+		opacity: 0.5;
+	}
+}

@@ -1,18 +1,35 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import { useState } from "react";
+import { invoke } from "@tauri-apps/api/core";
+import AppPanel from "./components/layout/AppPanel";
+import Sidebar from "./components/layout/Sidebar";
+import SidePanel from "./components/layout/SidePanel";
+import MainPanel from "./components/layout/MainPanel";
+import ResizablePanel from "./components/shared/ResizablePanel";
+
+const LAYOUT_CONFIG = {
+	sidebar: {
+		default: 220, // 22rem
+		min: 160, // 16rem
+		max: 320, // 32rem
+		storageKey: "tags-sidebar",
+	},
+	sidePanel: {
+		default: 280, // 28rem
+		min: 220, // 22rem
+		max: 480, // 48rem
+		storageKey: "notes-list",
+	},
+	mainPanel: {
+		default: 1000, // 100rem
+		min: 800, // 80rem
+		max: 1200,
+		storageKey: "main-panel",
+	},
+};
 
 function App() {
-	const [greetMsg, setGreetMsg] = useState("");
-	const [name, setName] = useState("");
-	// files list
 	const [files, setFiles] = useState<string[]>([]);
-
-	async function greet() {
-		// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-		setGreetMsg(await invoke("greet", { name }));
-	}
 
 	async function listMarkdownFiles() {
 		const list = await invoke("list_markdown_files", {
@@ -22,42 +39,30 @@ function App() {
 	}
 
 	return (
-		<main className="container">
-			<h1>Welcome to Tauri + React</h1>
-
-			<div className="row">
-				<a href="https://vite.dev" target="_blank">
-					<img src="/vite.svg" className="logo vite" alt="Vite logo" />
-				</a>
-				<a href="https://tauri.app" target="_blank">
-					<img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-			<form
-				className="row"
-				onSubmit={(e) => {
-					e.preventDefault();
-					greet();
-				}}
+		<AppPanel>
+			{/* TAGS SIDEBAR */}
+			<ResizablePanel
+				min={LAYOUT_CONFIG.sidebar.min}
+				max={LAYOUT_CONFIG.sidebar.max}
+				defaultWidth={LAYOUT_CONFIG.sidebar.default}
+				storageKey={LAYOUT_CONFIG.sidebar.storageKey}
 			>
-				<input
-					id="greet-input"
-					onChange={(e) => setName(e.currentTarget.value)}
-					placeholder="Enter a name..."
-				/>
-				<button type="submit">Greet</button>
-			</form>
-			<p>{greetMsg}</p>
-			<button onClick={() => listMarkdownFiles()}>List Markdown Files</button>
-
-			{files.length <= 0 && <p>No files found</p>}
-			{files.length > 0 && files.map((file) => <p key={file}>{file}</p>)}
-		</main>
+				<Sidebar />
+			</ResizablePanel>
+			{/* TAG-NOTES SIDE PANEL */}
+			<ResizablePanel
+				min={LAYOUT_CONFIG.sidePanel.min}
+				max={LAYOUT_CONFIG.sidePanel.max}
+				defaultWidth={LAYOUT_CONFIG.sidePanel.default}
+				storageKey={LAYOUT_CONFIG.sidePanel.storageKey}
+			>
+				<SidePanel>
+					<h2 style={{ color: "black" }}>Title</h2>
+				</SidePanel>
+			</ResizablePanel>
+			{/* NOTES/EDITOR MAIN PANEL */}
+			<MainPanel />
+		</AppPanel>
 	);
 }
 
