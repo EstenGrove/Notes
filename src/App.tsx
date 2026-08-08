@@ -11,13 +11,13 @@ const LAYOUT_CONFIG = {
 	sidebar: {
 		default: 220, // 22rem
 		min: 160, // 16rem
-		max: 320, // 32rem
+		max: 360, // 36rem
 		storageKey: "tags-sidebar",
 	},
 	sidePanel: {
-		default: 280, // 28rem
+		default: 200, // 28rem
 		min: 220, // 22rem
-		max: 480, // 48rem
+		max: 380, // 38rem
 		storageKey: "notes-list",
 	},
 	mainPanel: {
@@ -47,7 +47,9 @@ function App() {
 				defaultWidth={LAYOUT_CONFIG.sidebar.default}
 				storageKey={LAYOUT_CONFIG.sidebar.storageKey}
 			>
-				<Sidebar />
+				<Sidebar>
+					<h2 style={{ color: "black" }}>Tags</h2>
+				</Sidebar>
 			</ResizablePanel>
 			{/* TAG-NOTES SIDE PANEL */}
 			<ResizablePanel
@@ -57,7 +59,7 @@ function App() {
 				storageKey={LAYOUT_CONFIG.sidePanel.storageKey}
 			>
 				<SidePanel>
-					<h2 style={{ color: "black" }}>Title</h2>
+					<h2 style={{ color: "black" }}>Tag Notes List</h2>
 				</SidePanel>
 			</ResizablePanel>
 			{/* NOTES/EDITOR MAIN PANEL */}
