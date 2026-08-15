@@ -1,0 +1,67 @@
+$borderColor: var(--border-color);
+$border: 1px solid $borderColor;
+$borderLight: 1px solid var(--blueGrey800);
+$borderLightColor: var(--blueGrey800);
+$background: var(--bg-body);
+$foreground: var(--bg-foreground);
+// Text/Font
+$text1: var(--text1); // primary color
+$text2: var(--text2); // secondary color
+$text3: var(--text1_5); // secondary color
+// Fonts
+$fontPrimary: var(--font-primary);
+// accents
+$accent: var(--accent);
+$accentPurple: var(--accent-purple);
+$accentBlue: var(--accent-blue);
+$accentYellow: var(--accent-yellow);
+$accentGreen: var(--accent-green);
+$accentRed: var(--accent-red);
+$accentAlt: var(--alt-accent);
+$accentOrange: var(--accent-orange);
+// Diff colors
+$increaseAccent: var(--increase-accent);
+$decreaseAccent: var(--decrease-accent);
+$inputBG: var(--inputBG);
+$accentAltBG: rgba(255, 0, 91, 0.2);
+
+/* ACTIVITY ACCENTS */
+$strengthAccent: var(--strengthAccent);
+$cardioAccent: var(--cardioAccent);
+$stretchAccent: var(--stretchAccent);
+$walkAccent: var(--walkAccent);
+$timedAccent: var(--timedAccent);
+$otherAccent: var(--otherAccent);
+
+// PAIRED COLOR MAPS:
+
+$altMap: (
+	main: $accentAlt,
+	bg: rgba(255, 0, 91, 0.2),
+);
+
+$blueMap: (
+	main: $accentBlue,
+	bg: rgba(0, 124, 255, 0.2),
+);
+$redMap: (
+	main: $accentRed,
+	bg: rgba(255, 51, 61, 0.2),
+);
+$greenMap: (
+	main: $accentGreen,
+	bg: rgba(0, 226, 189, 0.2),
+);
+$purpleMap: (
+	main: $accentPurple,
+	bg: rgba(105, 25, 255, 0.2),
+);
+$btnMap: (
+	main: #fff,
+	bg: $accentBlue,
+);
+
+// MEDIA BREAKPOINTS //
+$bp-SM: 850px; // TABLET
+$bp-MD: 1024px; // LAPTOP
+$bp-LG: 1280px; // DESKTOP

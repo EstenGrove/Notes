@@ -1,0 +1,41 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Sidebar {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	background-color: $background;
+
+	&_inner {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem;
+	}
+}
+
+.ToggleButton {
+	width: 2rem;
+	height: 2rem;
+	min-width: 2rem;
+	min-height: 2rem;
+	max-width: 2rem;
+	max-height: 2rem;
+	@include rowCenter();
+	border-radius: 50%;
+	margin-left: auto;
+	background-color: transparent;
+
+	&_icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		min-width: 1.5rem;
+		min-height: 1.5rem;
+		fill: #000;
+	}
+}

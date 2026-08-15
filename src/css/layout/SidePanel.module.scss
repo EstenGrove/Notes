@@ -1,0 +1,42 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.SidePanel {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+
+	&_actions {
+		width: 100%;
+		height: 5rem;
+		@include flex_row(flex-start, center);
+		gap: 0 1rem;
+		// padding: 0 3rem;
+	}
+
+	&_inner {
+		width: 100%;
+		height: 100%;
+		padding: 0 3rem;
+	}
+}
+
+.AddTagNoteButton {
+	width: 3rem;
+	height: 3rem;
+	background-color: transparent;
+	fill: $text1;
+	border-radius: 0.5rem;
+	padding: 0.2rem 0.3rem;
+	@include rowCenter();
+	outline: none;
+	border: $border;
+	cursor: pointer;
+	margin-right: 1rem;
+
+	&_icon {
+		width: 2rem;
+		height: 2rem;
+	}
+}

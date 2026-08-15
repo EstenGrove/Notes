@@ -14,6 +14,7 @@ CREATE TABLE
   IF NOT EXISTS notes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL DEFAULT 'Untitled',
+    file_name TEXT NOT NULL UNIQUE, -- No path, just the file name (eg. 'Docker_Common_Commands.md')
     content TEXT NOT NULL DEFAULT '',
     is_pinned BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -47,10 +48,9 @@ CREATE TABLE
 
 CREATE TABLE
   recently_viewed (
-    note_id INTEGER NOT NULL,
+    id INTEGER NOT NULL, -- noteID or tagID
+    type TEXT NOT NULL, -- "note" or "tag"
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (note_id),
-    FOREIGN KEY (note_id) REFERENCES notes (id),
-    UNIQUE (note_id, created_at),
+    UNIQUE (id, type, created_at),
     INDEX (created_at)
   )
